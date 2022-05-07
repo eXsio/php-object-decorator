@@ -43,7 +43,10 @@ class PhpObjectDecoratorMethodDefinition
                     $methodParam                                        .= " = " . $parameter->getDefaultValueConstantName();
                     $parametersWithDefaultValues[$parameter->getName()] = $parameter->getDefaultValueConstantName();
                 } else {
-                    $methodParam                                        .= " = " . $parameter->getDefaultValue();
+                    $defaultValue = is_array($parameter->getDefaultValue()) ? json_encode($parameter->getDefaultValue()) : $parameter->getDefaultValue();
+
+                    $methodParam .= " = " . $defaultValue;
+
                     $parametersWithDefaultValues[$parameter->getName()] = $parameter->getDefaultValue();
                 }
 
