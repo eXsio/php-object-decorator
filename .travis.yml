@@ -1,0 +1,7 @@
+language: php
+php:
+  - '8.1.2'
+install:
+  - composer install --dev
+script:
+  - ./vendor/bin/phpunit tests
