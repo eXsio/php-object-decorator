@@ -37,6 +37,10 @@ should be. So what if we need a little black magic trick to achieve this? :)
 The library has no external dependencies. It, however, requires PHP in version at least 8.1.2. Let's be modern. 
 Let's not use outdated tech. Also, PHP 8.1 has Intersection Types that pair really nicely with the theme of this library.
 
+### Installation:
+
+```composer require exsio/php-object-decorator```
+
 ### Usage:
 
 Keeping things short, these are the things you can do to your Objects using this Tool:
