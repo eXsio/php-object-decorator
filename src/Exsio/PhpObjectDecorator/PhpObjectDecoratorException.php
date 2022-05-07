@@ -11,6 +11,7 @@ class PhpObjectDecoratorException extends \RuntimeException
      */
     public function __construct(string $msg, ?\Throwable $prev = null)
     {
-        parent::__construct($msg, -1, $prev);
+        $prevMsg = $prev ? ' ' . $prev->getMessage() : '';
+        parent::__construct($msg . $prevMsg, -1, $prev);
     }
 }
