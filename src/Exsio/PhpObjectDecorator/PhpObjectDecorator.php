@@ -190,6 +190,9 @@ class PhpObjectDecorator
             }
         ";
         } catch (\Throwable $error) {
+            if ($error instanceof PhpObjectDecoratorException) {
+                throw $error;
+            }
             throw new PhpObjectDecoratorException("Unable to create Decorated Object's Class Body: ", $error);
         }
     }

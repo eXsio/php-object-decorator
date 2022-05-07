@@ -46,6 +46,9 @@ class PhpDecoratedObject
 
             return $instance;
         } catch (\Throwable $error) {
+            if ($error instanceof PhpObjectDecoratorException) {
+                throw $error;
+            }
             throw new PhpObjectDecoratorException("Unable to Instantiate Decorated Class: ", $error);
         }
     }

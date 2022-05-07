@@ -26,6 +26,9 @@ final class PhpObjectDecoratorUtil
 
             return $result;
         } catch (\Throwable $error) {
+            if ($error instanceof PhpObjectDecoratorException) {
+                throw $error;
+            }
             throw new PhpObjectDecoratorException("Unable to reflectively scan the Class' Methods: ", $error);
         }
     }
