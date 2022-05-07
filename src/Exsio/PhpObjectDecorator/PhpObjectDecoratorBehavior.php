@@ -76,7 +76,7 @@ class PhpObjectDecoratorBehavior
         }
         foreach ($this->interfaceMethods as $name => $definition) {
             if (!array_key_exists($name, $this->traitMethods)) {
-                throw new PhpObjectDecoratorException(sprintf("Behavior Trait %s doesn't implement the corresponding Interface Method: %s::%s()", $this->traitClass, $this->interfaceMethods, $name));
+                throw new PhpObjectDecoratorException(sprintf("Behavior Trait %s doesn't implement the corresponding Interface Method: %s::%s()", $this->traitClass, $this->interfaceClass, $name));
             }
             $interfaceDefinition = $definition->getHeader();
             $traitDefinition     = $this->traitMethods[$name]->getHeader();
