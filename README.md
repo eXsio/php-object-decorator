@@ -3,6 +3,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/eXsio/php-object-decorator/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/eXsio/php-object-decorator/?branch=main)
 [![Code Coverage](https://scrutinizer-ci.com/g/eXsio/php-object-decorator/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/eXsio/php-object-decorator/?branch=main)
 
+
 # PHP Object Decorator
 
 ## A simple tool to dynamically add/modify behavior to/of your PHP Objects
@@ -16,7 +17,7 @@ during the runtime.
 
 ### My Use Case:
 
-Why did I spawn this abomination? I needed exactly what is decribed in the prior paragraph. I've created a Symfony
+Why did I spawn this little, cute abomination? I needed exactly what is decribed in the prior paragraph. I've created a Symfony
 Messenger
 application that sends and receives Messages asynchronously. But I wanted it to be smart and cool. I wanted for the
 Message Objects to have advanced features, like the ability to update the progress of the Message processing.
@@ -34,7 +35,7 @@ should be. So what if we need a little black magic trick to achieve this? :)
 ### Requirements:
 
 The library has no external dependencies. It, however, requires PHP in version at least 8.1.2. Let's be modern. 
-Let's not use outdated tech. 
+Let's not use outdated tech. Also, PHP 8.1 has Intersection Types that pair really nicely with the theme of this library.
 
 ### Usage:
 
@@ -44,14 +45,15 @@ Keeping things short, these are the things you can do to your Objects using this
 
 public function decorate() {
     /**
-    * Define a Class name of the dynamically generated.
+    * Define a Name of the dynamically generated Class.
+    * It will be used to instantiate it and also as the Cache key, if you'll want to use the Cache.
     */
     $className = "TestClass";
     
     /**
     * Point the Decorator to the Object Instance that you want to modify.
     */
-    $result    = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+    $decorated = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
         /**
         * Optionally, add the Namespace to the generated Class.
         */
@@ -95,13 +97,13 @@ public function decorate() {
     * 
     * @see PhpDecoratedObject::newInstanceOf()
     */
-    $body = $result->getBody();
+    $body = $decorated->getBody();
     
     /**
     * Or you can immediately instantiate the Decorated Class and get a handle to the Instance,
     * that has your new Behaviors.
     */
-    $instance  = $this->newInstance($result);
+    $instance = $this->newInstance($decorated);
 }
 
 

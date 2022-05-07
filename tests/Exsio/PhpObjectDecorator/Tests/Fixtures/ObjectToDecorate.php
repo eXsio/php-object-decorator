@@ -2,7 +2,7 @@
 
 namespace Exsio\PhpObjectDecorator\Tests\Fixtures;
 
-class ObjectToDecorate
+abstract class ObjectToDecorate
 {
     public string $publicProperty;
 
@@ -13,9 +13,9 @@ class ObjectToDecorate
 
     public function __construct()
     {
-        $this->publicProperty = "propertyValue";
+        $this->publicProperty    = "propertyValue";
         $this->protectedProperty = "propertyValue";
-        $this->privateProperty = "propertyValue";
+        $this->privateProperty   = "propertyValue";
     }
 
     use ObjectToDecorateTrait;

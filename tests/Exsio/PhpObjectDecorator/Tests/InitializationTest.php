@@ -4,7 +4,7 @@ namespace Exsio\PhpObjectDecorator\Tests;
 
 use Exsio\PhpObjectDecorator\PhpObjectDecorator;
 use Exsio\PhpObjectDecorator\PhpObjectDecoratorException;
-use Exsio\PhpObjectDecorator\Tests\Fixtures\ObjectToDecorate;
+use Exsio\PhpObjectDecorator\Tests\Fixtures\ChildObjectToDecorate;
 use PHPUnit\Framework\TestCase;
 
 class InitializationTest extends TestCase
@@ -13,7 +13,7 @@ class InitializationTest extends TestCase
     public function testShouldInitializeWithObjectAndClassName()
     {
         //when:
-        PhpObjectDecorator::decorate(new ObjectToDecorate(), "className");
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), "className");
 
         //then:
         $this->assertTrue(true);
@@ -40,7 +40,7 @@ class InitializationTest extends TestCase
         $this->expectException(PhpObjectDecoratorException::class);
 
         //when:
-        PhpObjectDecorator::decorate(new ObjectToDecorate(), $className);
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className);
     }
 
     public function invalidObjectProvider(): array
