@@ -22,13 +22,13 @@ Messenger
 application that sends and receives Messages asynchronously. But I wanted it to be smart and cool. I wanted for the
 Message Objects to have advanced features, like the ability to update the progress of the Message processing.
 BUT, I only wanted the features to be available on the Handler/receiving side. The Messages on the Publisher/sending
-side should be dump data holders. Only when the Messages arrive to the Handlers, they should have new and fancy
-features.
+side should be dumb data holders. Only when the Messages arrive to the Handlers, they should have new and fancy
+features. The fact that I had multiple Message classes - each with its own costructor and properties didn't exactly help either.
 
 Why go all this way, when I could've simply use some sort of injectable service to offer the exact same features? Well,
 call me a sucker for encapsulation.
-Even though this little tool bends all the OOP rules of PHP, the results (when done properly) are truly spectacular. We
-get Objects with Behavior, and furthermore, this behavior is available just and only when you need it.
+Even though this little tool bends all the OOP rules of PHP, the results (when done properly) are close to spectacular. We
+get Objects with additional Behavior, and furthermore, this Behavior is available just and only when you need it.
 I always prefer the ```$object->doStuff()``` syntax over ```$service->doStuffTo($object)```. It's nicer. Its how thing
 should be. So what if we need a little black magic trick to achieve this? :)
 
