@@ -83,7 +83,7 @@ public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecorated
         * You can override and customize single, named PHP Method.
         * The %CALL_PARENT% placeholder will be replaced automatically with the parent:: call to the original Method.
         */
-        ->withMethodOverride(new PhpObjectDecoratorMethodOverride("callInParent",
+        ->withMethodOverride(new PhpObjectDecoratorMethodOverride("methodNameToOverride",
             "
                 return 'OVERRIDDEN METHOD ' . %CALL_PARENT%;
         "))
