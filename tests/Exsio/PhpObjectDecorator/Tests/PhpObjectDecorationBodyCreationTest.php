@@ -18,7 +18,7 @@ class PhpObjectDecorationBodyCreationTest extends TestCase
         
             class TestClass extends Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\ChildObjectToDecorate implements Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\Behaviors\\ValidBehavior1Interface, Exsio\\PhpObjectDecorator\\PhpDecoratedObjectInterface  
             {
-                private string $__originalClass;
+                private string $__originalClass = \'Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\ChildObjectToDecorate\';
 
                 use Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\Behaviors\\ValidBehavior1Trait;
 
