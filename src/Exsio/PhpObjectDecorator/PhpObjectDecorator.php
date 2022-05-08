@@ -176,7 +176,7 @@ class PhpObjectDecorator
         
             class $className extends $originalClassName implements $interfacesStr  
             {
-                private string \$__originalClass;
+                private string \$__originalClass = '$originalClassName';
 
                 $traitsStr
 

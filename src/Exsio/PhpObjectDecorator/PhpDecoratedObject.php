@@ -42,8 +42,6 @@ class PhpDecoratedObject
             $instance  = $reflector->newInstanceWithoutConstructor();
             self::cloneProperties($instance, get_class($obj), $obj);
 
-            $reflector->getProperty("__originalClass")->setValue($instance, get_class($obj));
-
             return $instance;
         } catch (\Throwable $error) {
             if ($error instanceof PhpObjectDecoratorException) {

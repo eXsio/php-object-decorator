@@ -45,6 +45,7 @@ class PhpObjectDecorationInstantiationTest extends TestCase
         $this->assertEquals("childPropertyValue", $instance->getChildPrivateProperty());
         $this->assertEquals("TRAIT", $instance->callInTrait());
         $this->assertEquals("PROTECTED_CONTENT", $instance->protectedContentMadePublic());
+        $this->assertEquals(ChildObjectToDecorate::class, $instance->getOriginalClass());
     }
 
     public function testShouldCreateAndInstantiateDecoratedObject_NoMethodChanges()
