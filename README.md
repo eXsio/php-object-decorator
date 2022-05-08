@@ -50,14 +50,15 @@ Keeping things short, these are the things you can do to your Objects using this
 * PHP 8.1 offers Intersection Types. 
 * They prove that the Decorated Object indeed contains all the new Behaviors.
 * Additionally, they allow for your IDE to properly assist you with intellisense and code completion.
+* PhpDecoratedObjectInterface is always added as an additional, default Behavior to every decorated Object Instance.
 */
-public function decorate(ChildObjectToDecorate $obj): ChildObjectToDecorate & PhpDecoratedObjectInterface & ValidBehavior1Interface
+public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecoratedObjectInterface & BehaviorInterface
 {
     /**
     * Define a Name of the dynamically generated Class.
     * It will be used to instantiate it and also as the Cache key, if you'll want to use the Cache.
     */
-    $className = "DecoratedChildObject";
+    $className = "DecoratedObject";
     
     /**
     * Point the Decorator to the Object Instance that you want to modify.
@@ -66,32 +67,33 @@ public function decorate(ChildObjectToDecorate $obj): ChildObjectToDecorate & Ph
         /**
         * Optionally, add the Namespace to the generated Class.
         */
-        ->withNamespace("Exsio\PhpObjectDecorator\Tests")
+        ->withNamespace("Exsio\PhpObjectDecorator\Examples")
         /**
         * Class Generation is expensive, you can cache the generated Class Definitions.
         * 
         * @see PhpObjectDecoratorCacheInterface
         */
-        ->withCache(new TestCache())
+        ->withCache(new DecorationCache())
         /**
         * You can add your Custom Behavior to your Object. Behavior is a pair of a PHP Interface, 
         * and a corresponding PHP Trait that implements all the methods from that Interface.
         */
-        ->withBehavior(new PhpObjectDecoratorBehavior(ValidBehavior1Interface::class, ValidBehavior1Trait::class))
+        ->withBehavior(new PhpObjectDecoratorBehavior(BehaviorInterface::class, BehaviorTrait::class))
         /**
         * You can override and customize single, named PHP Method.
+        * The %CALL_PARENT% placeholder will be replaced automatically with the parent:: call to the original Method.
         */
         ->withMethodOverride(new PhpObjectDecoratorMethodOverride("callInParent",
             "
                 return 'OVERRIDDEN METHOD ' . %CALL_PARENT%;
         "))
         /**
-         * you can use a Method Processor to go over every public and protected Method, and modify them how you like.
+         * You can use a Method Processor to go over every public and protected Method, and modify them how you like.
          * Method Processor will skip Methods affected by Method Overrides.
          * 
          * @see PhpObjectDecoratorMethodProcessorInterface
          */
-        ->withMethodProcessor(new TestMethodProcessor())
+        ->withMethodProcessor(new DecorationMethodProcessor())
         /**
         * When you're ready, go ahead and build your Decorated Object.
         * 
