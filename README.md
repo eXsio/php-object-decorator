@@ -46,18 +46,23 @@ Let's not use outdated tech. Also, PHP 8.1 has Intersection Types that pair real
 Keeping things short, these are the things you can do to your Objects using this Tool:
 
 ```php
-
-public function decorate() {
+/**
+* PHP 8.1 offers Intersection Types. 
+* They prove that the Decorated Object indeed contains all the new Behaviors.
+* Additionally, they allow for your IDE to properly assist you with intellisense and code completion.
+*/
+public function decorate(ChildObjectToDecorate $obj): ChildObjectToDecorate & PhpDecoratedObjectInterface & ValidBehavior1Interface
+{
     /**
     * Define a Name of the dynamically generated Class.
     * It will be used to instantiate it and also as the Cache key, if you'll want to use the Cache.
     */
-    $className = "TestClass";
+    $className = "DecoratedChildObject";
     
     /**
     * Point the Decorator to the Object Instance that you want to modify.
     */
-    $decorated = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+    $decorated = PhpObjectDecorator::decorate($obj, $className)
         /**
         * Optionally, add the Namespace to the generated Class.
         */
@@ -107,18 +112,7 @@ public function decorate() {
     * Or you can immediately instantiate the Decorated Class and get a handle to the Instance,
     * that has your new Behaviors.
     */
-    $instance = $this->newInstance($decorated);
-}
-
-
-/**
-* PHP 8.1 offers Intersection Types. 
-* They prove that the Decorated Object indeed contains all the new Behaviors.
-* Additionally, they allow for your IDE to properly assist you with intellisense and code completion.
-*/
-private function newInstance(PhpDecoratedObject $decoratedObject): ChildObjectToDecorate & PhpDecoratedObjectInterface & ValidBehavior1Interface
-{
-    return $decoratedObject->newInstance();
+    return $decorated->newInstance();
 }
 
 ```
