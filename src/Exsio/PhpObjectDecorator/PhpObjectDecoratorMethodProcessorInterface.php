@@ -4,6 +4,9 @@ namespace Exsio\PhpObjectDecorator;
 
 interface PhpObjectDecoratorMethodProcessorInterface
 {
+
+    const SKIP = "";
+
     /**
      * @param PhpObjectDecoratorMethodDefinition $methodDefinition
      *

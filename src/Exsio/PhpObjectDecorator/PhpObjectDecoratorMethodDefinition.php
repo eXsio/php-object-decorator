@@ -21,6 +21,8 @@ class PhpObjectDecoratorMethodDefinition
 
     private readonly bool $returnsValue;
 
+    private readonly \ReflectionMethod $reflector;
+
     /**
      * @param \ReflectionMethod $method
      *
@@ -63,6 +65,7 @@ class PhpObjectDecoratorMethodDefinition
         $this->parametersWithTypes         = $parametersWithTypes;
         $this->parameterNames              = $paramNames;
         $this->returnsValue                = $returnType != "" && $returnType != "never" && $returnType != "void";
+        $this->reflector                   = $method;
     }
 
     /**
@@ -120,6 +123,15 @@ class PhpObjectDecoratorMethodDefinition
     {
         return $this->returnsValue;
     }
+
+    /**
+     * @return \ReflectionMethod
+     */
+    public function getReflector(): \ReflectionMethod
+    {
+        return $this->reflector;
+    }
+
 
     /**
      * @param \ReflectionMethod $method

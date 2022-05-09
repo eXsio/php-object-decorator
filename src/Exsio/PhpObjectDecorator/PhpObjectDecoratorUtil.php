@@ -19,7 +19,7 @@ final class PhpObjectDecoratorUtil
             $result    = [];
             $reflector = new \ReflectionClass($className);
             foreach ($reflector->getMethods() as $method) {
-                if (($method->isProtected() || $method->isPublic()) && !$method->isStatic() && !$method->isConstructor() && !$method->isDestructor()) {
+                if (($method->isProtected() || $method->isPublic()) && !$method->isStatic()) {
                     $result[$method->getName()] = new PhpObjectDecoratorMethodDefinition($method);
                 }
             }

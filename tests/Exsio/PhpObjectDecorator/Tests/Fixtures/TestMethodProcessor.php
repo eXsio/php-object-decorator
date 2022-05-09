@@ -10,7 +10,11 @@ class TestMethodProcessor implements PhpObjectDecoratorMethodProcessorInterface
 
     function processMethod(PhpObjectDecoratorMethodDefinition $methodDefinition): string
     {
-        $parentCall = $methodDefinition->returnsValue() ? "return ".$methodDefinition->getParentCall().";" : $methodDefinition->getParentCall().";";
+        if ($methodDefinition->getReflector()->isConstructor()) {
+            return self::SKIP;
+        }
+        $parentCall = $methodDefinition->returnsValue() ? "return " . $methodDefinition->getParentCall() . ";" : $methodDefinition->getParentCall() . ";";
+
         return "
                     echo 'PROCESSED METHOD';
                     $parentCall

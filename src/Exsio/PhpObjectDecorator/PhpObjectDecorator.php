@@ -284,9 +284,13 @@ class PhpObjectDecorator
         $overriddenMethodNames = $this->getOverriddenMethodNames();
         foreach ($this->methods as $methodDefinition) {
             if (!in_array($methodDefinition->getName(), $overriddenMethodNames)) {
-                $methods .= sprintf(self::METHOD_TEMPLATE,
-                    $methodDefinition->getHeader(), str_replace(self::CALL_PARENT, $methodDefinition->getParentCall(), $this->methodProcessor->processMethod($methodDefinition))
-                );
+                $processedMethod = $this->methodProcessor->processMethod($methodDefinition);
+                if (!empty($processedMethod)) {
+                    $methods .= sprintf(self::METHOD_TEMPLATE, $methodDefinition->getHeader(),
+                        str_replace(self::CALL_PARENT, $methodDefinition->getParentCall(), $processedMethod)
+                    );
+                }
+
             }
         }
 
