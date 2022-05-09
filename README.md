@@ -64,11 +64,16 @@ public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecorated
         /**
         * You can add your Custom Behavior to your Object. Behavior is a pair of a PHP Interface, 
         * and a corresponding PHP Trait that implements all the methods from that Interface.
+        *
+        * The Tool validates whether the Trait implments all the Interface's methods and if the method declarations match.
         */
         ->withBehavior(new PhpObjectDecoratorBehavior(BehaviorInterface::class, BehaviorTrait::class))
         /**
         * You can override and customize single, named PHP Method.
         * The %CALL_PARENT% placeholder will be replaced automatically with the parent:: call to the original Method.
+        *
+        * The Tool validates whether the Method you want to override exists in the original Class.
+        * You can't override Methods from your Behaviors. Only from the original Class (and it's parents).
         */
         ->withMethodOverride(new PhpObjectDecoratorMethodOverride("methodNameToOverride",
             "
@@ -77,6 +82,8 @@ public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecorated
         /**
          * You can use a Method Processor to go over every public and protected Method, and modify them how you like.
          * Method Processor will skip Methods affected by Method Overrides.
+         *
+         * You can skip the Method by returing self::SKIP from the Processor.
          * 
          * @see PhpObjectDecoratorMethodProcessorInterface
          */
