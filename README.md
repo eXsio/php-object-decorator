@@ -91,7 +91,8 @@ public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecorated
     /**
     * Now you can get a string representation of your Decorated Class.
     * YOu can save it to a File for later usage. 
-    * You can use PhpDecoratedObject::newInstanceOf() to instantiate it.
+    * You can use PhpDecoratedObject::newInstanceOf() to instantiate it, 
+    * or you can simply load it using an autoloader and call it's Constructor.
     * 
     * @see PhpDecoratedObject::newInstanceOf()
     */
