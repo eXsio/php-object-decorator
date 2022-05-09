@@ -10,28 +10,14 @@
 
 ### Motivation:
 
-There are times when we have to bend the rules, especially when making slick and "magical" Developer Experience.
-This tool can help you add any new Behaviors and modify any ```public ``` and ```protected``` methods of your PHP
-Objects
-during the runtime.
+There are times when we have to bend the rules, especially when making a slick and "magical" Developer Experience.
+This tool can help you to dynamically add any new Behaviors and modify any ```public ``` and ```protected``` methods of your PHP
+Objects in the runtime. With this Tool you can have a dumb data-holder Object and give it superpowers right when and where it needs it to kick some butts.
 
-### My Use Case:
+**WARNING:**
+Meta-programming is not for the faint-hearted. You should really explore your options before jumping into that particular rabbit hole.
 
-Why did I spawn this little, cute abomination? I needed exactly what is decribed in the prior paragraph. I've created an
-application that sends and receives Messages asynchronously, and I wanted it to be smart and cool. I wanted for the
-Message Objects to have advanced features, like the ability to update the progress of the Message processing.
-BUT, I only wanted the features to be available on the Handler/receiving side. The Messages on the Publisher/sending
-side should be dumb data holders. Only when the Messages arrive to the Handlers, they should have new and fancy
-features. The fact that I had multiple Message classes - each with its own costructor and properties didn't exactly help either.
-
-Why go all this way, when I could've simply use some sort of injectable service to offer the exact same features? Well,
-call me a sucker for encapsulation and Developer Experience.
-Even though this little tool bends all the OOP rules of PHP, the results (when done properly) are close to spectacular. We
-get Objects with additional Behavior, and furthermore, this Behavior is available just and only when you need it.
-I always prefer the ```$object->doStuff()``` syntax over ```$service->doStuffTo($object)```. It's nicer. Its how thing
-should be. So what if we need a little black magic trick to achieve this? :)
-
-One fruitful weekend of conceptual work and some coding, and here it is.
+You were warned.
 
 ### Requirements:
 
