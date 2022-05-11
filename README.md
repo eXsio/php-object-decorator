@@ -73,7 +73,7 @@ public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecorated
         * The %CALL_PARENT% placeholder will be replaced automatically with the parent:: call to the original Method.
         *
         * The Tool validates whether the Method you want to override exists in the original Class.
-        * You can't override Methods from your Behaviors. Only from the original Class (and it's parents).
+        * You can't override Methods from your Behaviors. Only from the original Class (and its parents).
         */
         ->withMethodOverride(new PhpObjectDecoratorMethodOverride("methodNameToOverride",
             "
