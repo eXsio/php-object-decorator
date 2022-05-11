@@ -16,7 +16,9 @@ class PhpObjectDecorationCacheTest extends TestCase
         $className = "TestClass_" . uniqid();
         $cache     = new TestCache();
         $cache->setEnabled(true);
-        $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)->withCache($cache);
+        $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
+            ->withCache($cache);
         $result    = $decorator->get();
         $result    = $decorator->get();
 
@@ -33,7 +35,9 @@ class PhpObjectDecorationCacheTest extends TestCase
         $className = "TestClass_" . uniqid();
         $cache     = new TestCache();
         $cache->setEnabled(false);
-        $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)->withCache($cache);
+        $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
+            ->withCache($cache);
         $result    = $decorator->get();
         $result    = $decorator->get();
 

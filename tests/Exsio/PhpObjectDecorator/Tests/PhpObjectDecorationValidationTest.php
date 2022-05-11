@@ -25,7 +25,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withBehavior(new PhpObjectDecoratorBehavior(InvalidBehaviorMissingMethodInterface::class, InvalidBehaviorMissingMethodTrait::class))
             ->get();
 
@@ -38,7 +39,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withBehavior(new PhpObjectDecoratorBehavior(InvalidBehaviorIncompatibleMethodTrait::class, InvalidBehaviorMissingMethodTrait::class))
             ->get();
 
@@ -51,7 +53,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withBehavior(new PhpObjectDecoratorBehavior(InvalidBehaviorMissingMethodInterface::class, InvalidBehaviorMissingMethodInterface::class))
             ->get();
 
@@ -64,7 +67,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withBehavior(new PhpObjectDecoratorBehavior(InvalidBehaviorIncompatibleMethodInterface::class, InvalidBehaviorIncompatibleMethodTrait::class))
             ->get();
 
@@ -77,7 +81,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withBehavior(new PhpObjectDecoratorBehavior(InvalidBehaviorDuplicatedMethodInterface::class, InvalidBehaviorDuplicatedMethodTrait::class))
             ->get();
 
@@ -90,7 +95,8 @@ class PhpObjectDecorationValidationTest extends TestCase
 
         //when:
         $className = "TestClass_" . uniqid();
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())
+            ->withClassName($className)
             ->withMethodOverride(new PhpObjectDecoratorMethodOverride("callInParenta",
                 "
                     return 'OVERRIDDEN METHOD ' . %CALL_PARENT%;

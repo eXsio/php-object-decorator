@@ -32,13 +32,14 @@ class PhpObjectDecorator
 
     private ?PhpObjectDecoratorCacheInterface $cache = null;
 
+    private string $className;
+
     /**
      * @param mixed  $obj
      * @param string $className
      */
     private final function __construct(
-        private readonly mixed $obj,
-        private readonly string $className
+        private readonly mixed $obj
     ) {
     }
 
@@ -48,11 +49,9 @@ class PhpObjectDecorator
      *
      * @return PhpObjectDecorator
      */
-    public static function decorate(mixed $obj, string $className): PhpObjectDecorator
+    public static function decorate(mixed $obj): PhpObjectDecorator
     {
-        if (empty($className)) {
-            throw new PhpObjectDecoratorException("Class Name of the decorated Object cannot be empty");
-        }
+
         if (!is_object($obj)) {
             throw new PhpObjectDecoratorException(sprintf("You can only decorate PHP Objects, %s given", gettype($obj)));
         }
@@ -60,7 +59,25 @@ class PhpObjectDecorator
             throw new PhpObjectDecoratorException("StdClass decoration is not supported");
         }
 
-        return new PhpObjectDecorator($obj, $className);
+        $decorator        = new PhpObjectDecorator($obj);
+        $defaultClassName = sprintf("%s_%s", str_replace("\\", "_", get_class($obj)), 'PhpDecoratedObject');
+
+        return $decorator->withClassName($defaultClassName);
+    }
+
+    /**
+     * @param string $className
+     *
+     * @return $this
+     */
+    public function withClassName(string $className): PhpObjectDecorator
+    {
+        $this->className = $className;
+        if (empty($className)) {
+            throw new PhpObjectDecoratorException("Decorated Class' name cannot be empty");
+        }
+
+        return $this;
     }
 
     /**
@@ -70,7 +87,7 @@ class PhpObjectDecorator
      */
     public function withNamespace(string $namespace): PhpObjectDecorator
     {
-        $this->namespace = $namespace;
+        $this->namespace = empty(trim($namespace)) ? null : trim($namespace);
 
         return $this;
     }

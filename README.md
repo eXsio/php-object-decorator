@@ -42,17 +42,17 @@ Keeping things short, these are the things you can do to your Objects using this
 public function decorate(ObjectToDecorate $obj): ObjectToDecorate & PhpDecoratedObjectInterface & BehaviorInterface
 {
     /**
-    * Define a Name of the dynamically generated Class.
-    * It will be used to instantiate it and also as the Cache key, if you'll want to use the Cache.
-    */
-    $className = "DecoratedObject";
-    
-    /**
     * Point the Decorator to the Object Instance that you want to modify.
     */
-    $decorated = PhpObjectDecorator::decorate($obj, $className)
+    $decorated = PhpObjectDecorator::decorate($obj)
+        /**
+        * Optionally, you can define a custom Class Name for the Decorated Object;
+        * Otherwise it will be an original Fully Qualified Class Name with \ replaced with _ and a _PhpObjectDecorated suffix.
+        */
+        ->withClassName("DecoratedObject")
         /**
         * Optionally, add the Namespace to the generated Class.
+        * Otherwise, the Decorated Object's Class will have no Namespace.
         */
         ->withNamespace("Exsio\PhpObjectDecorator\Examples")
         /**

@@ -16,7 +16,7 @@ class PhpObjectDecorationBodyCreationTest extends TestCase
     const EXPECTED = '
             namespace Exsio\\PhpObjectDecorator\\Tests;
         
-            class TestClass extends Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\ChildObjectToDecorate implements Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\Behaviors\\ValidBehavior1Interface, Exsio\\PhpObjectDecorator\\PhpDecoratedObjectInterface  
+            class Exsio_PhpObjectDecorator_Tests_Fixtures_ChildObjectToDecorate_PhpDecoratedObject extends Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\ChildObjectToDecorate implements Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\Behaviors\\ValidBehavior1Interface, Exsio\\PhpObjectDecorator\\PhpDecoratedObjectInterface  
             {
                 private string $__originalClass = \'Exsio\\PhpObjectDecorator\\Tests\\Fixtures\\ChildObjectToDecorate\';
 
@@ -125,8 +125,7 @@ class PhpObjectDecorationBodyCreationTest extends TestCase
     public function testShouldCreateBodyOfDecoratedObject()
     {
         //when:
-        $className = "TestClass";
-        $result    = PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className)
+        $result    = PhpObjectDecorator::decorate(new ChildObjectToDecorate())
             ->withNamespace("Exsio\PhpObjectDecorator\Tests")
             ->withBehavior(new PhpObjectDecoratorBehavior(ValidBehavior1Interface::class, ValidBehavior1Trait::class))
             ->withMethodOverride(new PhpObjectDecoratorMethodOverride("callInParent",

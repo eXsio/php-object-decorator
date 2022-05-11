@@ -13,7 +13,7 @@ class InitializationTest extends TestCase
     public function testShouldInitializeWithObjectAndClassName()
     {
         //when:
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), "className");
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate());
 
         //then:
         $this->assertTrue(true);
@@ -28,7 +28,7 @@ class InitializationTest extends TestCase
         $this->expectException(PhpObjectDecoratorException::class);
 
         //when:
-        PhpObjectDecorator::decorate($obj, "className");
+        PhpObjectDecorator::decorate($obj);
     }
 
     /**
@@ -40,7 +40,7 @@ class InitializationTest extends TestCase
         $this->expectException(PhpObjectDecoratorException::class);
 
         //when:
-        PhpObjectDecorator::decorate(new ChildObjectToDecorate(), $className);
+        PhpObjectDecorator::decorate(new ChildObjectToDecorate())->withClassName($className);
     }
 
     public function invalidObjectProvider(): array
