@@ -83,7 +83,7 @@ class PhpObjectDecoratorBehavior
 
             if ($interfaceDefinition != $traitDefinition) {
                 throw new PhpObjectDecoratorException(sprintf("Behavior Trait's Method %s::%s is not compatible with the corresponding Interface Method: %s::%s",
-                        $this->traitClass, $traitDefinition, $this->interfaceMethods, $interfaceDefinition)
+                        $this->traitClass, $traitDefinition, $this->interfaceClass, $interfaceDefinition)
                 );
             }
         }

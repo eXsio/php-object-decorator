@@ -19,7 +19,7 @@ class PhpObjectDecorationCacheTest extends TestCase
         $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate())
             ->withClassName($className)
             ->withCache($cache);
-        $result    = $decorator->get();
+        $decorator->get();
         $result    = $decorator->get();
 
         //then:
@@ -38,8 +38,8 @@ class PhpObjectDecorationCacheTest extends TestCase
         $decorator = PhpObjectDecorator::decorate(new ChildObjectToDecorate())
             ->withClassName($className)
             ->withCache($cache);
-        $result    = $decorator->get();
-        $result    = $decorator->get();
+        $decorator->get();
+        $decorator->get();
 
         //then:
         $this->assertFalse($cache->contains($className));
