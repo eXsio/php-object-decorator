@@ -63,7 +63,9 @@ class PhpDecoratedObject
         $reflector  = new \ReflectionClass($class);
         $properties = $reflector->getProperties();
         foreach ($properties as $property) {
-            if ($property->isInitialized($obj)) {
+            //sometimes \ReflectionClass returns properties from the subclasses, and that can cause
+            //an error, when trying to set a readonly property value from invalid scope
+            if ($property->isInitialized($obj) && $property->getDeclaringClass()->getName() === $class) {
                 $originalValue = $property->getValue($obj);
                 $property->setValue($instance, $originalValue);
             }
